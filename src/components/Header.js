@@ -22,7 +22,10 @@ const Header = (props) => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <h4 className="text-white">Hello, {auth.user.userName}</h4>
+              <span className="text-white navbar-brand ">Hello, {auth.user.userName}</span>
+              <Link to="/ask_question" className="btn btn-head  ml-auto">
+                Ask Question
+              </Link>
               <button
                 className="btn btn-white btn-sm mx-2"
                 onClick={() => {

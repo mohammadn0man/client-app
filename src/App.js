@@ -7,6 +7,7 @@ import Home from './components/Home';
 import { store } from "./store";
 import Login from './components/Login';
 import Register from './components/Register';
+import AskQuestion from "./components/AskQuestion";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
+                <Route exact path="/ask_question" component={AskQuestion} />
               </Switch>
             </div>
           </div>
