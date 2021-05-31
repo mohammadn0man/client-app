@@ -47,10 +47,10 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
       if (error.response) {
         dispatch({
           type: AuthActionType.LOGIN_FAIL,
-          payload: error.response.data.message,
+          payload: error.response.data,
         });
       }
-      setErrorHandler({ hasError: true, message: error.response.data.message });
+      setErrorHandler({ hasError: true, message: error.response.data });
     }
   };
 };

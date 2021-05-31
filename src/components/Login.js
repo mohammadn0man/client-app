@@ -61,8 +61,7 @@ const Login = (props) => {
 
                                 <button
                                     className="btn btn-lg btn-primary pull-xs-right"
-                                    type="submit"
-                                >
+                                    type="submit">
                                     Sign in
                                 </button>
 

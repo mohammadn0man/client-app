@@ -10,7 +10,7 @@ const Header = (props) => {
   return (
     <nav className="navbar shadow fixed-top navbar-expand-sm navbar-dark bg-primary">
       <div className="container">
-        <Link to="/" className="navbar-brand">
+        <Link to="/" className="text-white navbar-brand">
           QA Forum
         </Link>
         <div className="ml-auto d-flex">
