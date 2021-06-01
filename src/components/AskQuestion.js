@@ -7,7 +7,7 @@ import axios from "axios";
 const AskQuestion = (props) => {
     const { auth } = props;
     let history = useHistory();
-    const { userId } = auth;
+    const { userId } = auth.user;
     const [question, setQuestion] = useState({ userId });
     const [options, setOptions] = useState([]);
     const [product, setProduct] = useState([]);
@@ -36,6 +36,8 @@ const AskQuestion = (props) => {
             setProduct(val);
             let result = val.map(a => a.name);
             setOptions(result);
+            const { productId } = val[0];
+            setQuestion({ ...question, ...{ productId } });
         } catch (err) {
             history.push('/login');
         }
@@ -51,7 +53,7 @@ const AskQuestion = (props) => {
                             type="text"
                             className="form-control"
                             placeholder="Title"
-                            // required
+                            required
                             onChange={(event) => {
                                 const title = event.target.value;
                                 setQuestion({ ...question, ...{ title } });
@@ -62,6 +64,8 @@ const AskQuestion = (props) => {
                         <Dropdown
                             className="form-control"
                             options={options}
+                            required
+                            value={options[0]}
                             placeholder="Select an option"
                             onChange={(event) => {
                                 const productName = event.value;
@@ -75,7 +79,7 @@ const AskQuestion = (props) => {
                             type="text"
                             className="form-control"
                             placeholder="Subject"
-                            // required
+                            required
                             onChange={(event) => {
                                 const subject = event.target.value;
                                 setQuestion({ ...question, ...{ subject } });
@@ -86,7 +90,7 @@ const AskQuestion = (props) => {
                         <textarea
                             className="form-control"
                             placeholder="Detailed Description"
-                            // required
+                            required
                             rows="5"
                             onChange={(event) => {
                                 const text = event.target.value;
