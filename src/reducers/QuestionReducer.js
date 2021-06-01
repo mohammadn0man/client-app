@@ -20,7 +20,6 @@ const questionReducer = (state = questionState, action) => {
                 currentQuestion: addedQuestion,
             }
 
-
         case QuestionActionType.LOAD_ALL_QUESTIONS:
             const allQuestions = action.payload;
             return {
