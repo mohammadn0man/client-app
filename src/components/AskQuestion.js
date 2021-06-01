@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import axios from "axios";
 
-export default function AskQuestion() {
+const AskQuestion = (props) => {
+    const { auth } = props;
     let history = useHistory();
-    const dispatch = useDispatch();
-    const [question, setQuestion] = useState({});
+    const { userId } = auth;
+    const [question, setQuestion] = useState({ userId });
     const [options, setOptions] = useState([]);
     const [product, setProduct] = useState([]);
 
     const createPost = async (e) => {
         e.preventDefault();
         console.log(question);
-        try {
-            const res = await axios.post("/ask_question", question);
-            console.log(res.data);
-            history.push("/");
-        } catch (error) {
-            console.log(error);
-        }
+        // try {
+        //     const res = await axios.post("/ask_question", question);
+        //     console.log(res.data);
+        //     history.push("/");
+        // } catch (error) {
+        //     console.log(error);
+        // }
     };
 
     function getByValue(arr, value) {
@@ -29,14 +30,16 @@ export default function AskQuestion() {
     }
 
     useEffect(async () => {
-        const res = await axios.get("/all_product");
-        const val = res.data;
-        setProduct(val);
-        let result = val.map(a => a.name);
-        setOptions(result);
+        try {
+            const res = await axios.get("/all_product");
+            const val = res.data;
+            setProduct(val);
+            let result = val.map(a => a.name);
+            setOptions(result);
+        } catch (err) {
+            history.push('/login');
+        }
     }, [])
-
-    const defaultOption = options[0];
 
     return (
         <div className="card border-0 shadow">
@@ -100,3 +103,18 @@ export default function AskQuestion() {
     );
 };
 
+const mapStateToProps = (state) => {
+    return {
+        auth: state,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ask_question: (history) => {
+            // dispatch();
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AskQuestion);

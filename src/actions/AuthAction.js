@@ -72,6 +72,7 @@ const LogOutAuthAction = (history) => {
           payload: error.response.data,
         });
       }
+      history.push("/");
     }
   };
 };
