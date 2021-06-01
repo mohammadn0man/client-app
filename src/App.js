@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Register from './components/Register';
 import AskQuestion from "./components/AskQuestion";
+import ViewQuestion from "./components/ViewQuestion";
 import axios from 'axios';
 import { useDispatch } from "react-redux";
 import { AuthActionType } from "./actions/AuthAction";
@@ -40,6 +41,7 @@ function App() {
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/ask_question" component={AskQuestion} />
+              <Route exact path="/question/view/:id" component={ViewQuestion} />
             </Switch>
           </div>
         </div>
