@@ -24,7 +24,7 @@ const Header = (props) => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              <span className="text-white navbar-brand ">Hello, {auth.user.userName}</span>
+              <span className="text-white navbar-brand ">Hello, {auth.user.fullName}</span>
               <Link to="/ask_question" className="btn btn-head  ml-auto">
                 Ask Question
               </Link>

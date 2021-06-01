@@ -8,23 +8,25 @@ const questionState = {
         text: "",
         title: ""
     },
+    isAllLoaded: false,
     questions: []
 };
 
 const questionReducer = (state = questionState, action) => {
     switch (action.type) {
         case QuestionActionType.ASK_QUESTION:
-            const addedQuestion = action.payload;
+            const currentQuestion = action.payload;
             return {
                 ...state,
-                currentQuestion: addedQuestion,
+                currentQuestion,
             }
 
         case QuestionActionType.LOAD_ALL_QUESTIONS:
-            const allQuestions = action.payload;
+            const questions = action.payload;
             return {
                 ...state,
-                questions: allQuestions,
+                isAllLoaded: true,
+                questions,
             }
 
         default:

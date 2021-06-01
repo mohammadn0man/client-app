@@ -97,7 +97,7 @@ const AskQuestion = (props) => {
                         />
                     </div>
                     <button className="btn btn-primary" type="submit">
-                        Publish
+                        Ask
                     </button>
                 </form>
             </div>
