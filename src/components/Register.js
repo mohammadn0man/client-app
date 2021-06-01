@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { RegisterAuthAction } from '../actions/AuthAction';
 
 function Register(props) {
-    const { user, register } = props;
+    const { register } = props;
     const [userState, setUserState] = useState({});
     const history = useHistory();
 

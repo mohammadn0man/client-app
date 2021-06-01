@@ -7,7 +7,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import AskQuestion from "./components/AskQuestion";
 import axios from 'axios';
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AuthActionType } from "./actions/AuthAction";
 
 function App() {

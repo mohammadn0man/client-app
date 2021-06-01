@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import axios from "axios";
@@ -25,23 +25,26 @@ const AskQuestion = (props) => {
     };
 
     function getByValue(arr, value) {
-        var result = arr.filter(function (o) { return o.name == value; });
+        var result = arr.filter(function (o) { return o.name === value; });
         return result ? result[0] : null; // or undefined
     }
 
-    useEffect(async () => {
-        try {
-            const res = await axios.get("/all_product");
-            const val = res.data;
-            setProduct(val);
-            let result = val.map(a => a.name);
-            setOptions(result);
-            const { productId } = val[0];
-            setQuestion({ ...question, ...{ productId } });
-        } catch (err) {
-            history.push('/login');
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const res = await axios.get("/all_product");
+                const val = res.data;
+                setProduct(val);
+                let result = val.map(a => a.name);
+                setOptions(result);
+                const { productId } = val[0];
+                setQuestion({ ...question, ...{ productId } });
+            } catch (err) {
+                history.push('/login');
+            }
         }
-    }, [])
+        fetchData();
+    });
 
     return (
         <div className="card border-0 shadow">
@@ -109,7 +112,7 @@ const AskQuestion = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state,
+        auth: state.authState,
     };
 };
 

@@ -2,11 +2,11 @@ import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import createHistory from 'history/createBrowserHistory';
 import thunk from "redux-thunk";
-import authReducer from './reducers/AuthReducer';
+import reducer from './reducers';
 
 export const history = createHistory();
 
 export const store = createStore(
-  authReducer,
+  reducer,
   composeWithDevTools(applyMiddleware(thunk))
 );

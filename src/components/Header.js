@@ -45,7 +45,7 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    auth: state,
+    auth: state.authState,
   };
 };
 
