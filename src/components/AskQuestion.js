@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Dropdown from 'react-dropdown';
 import axios from "axios";
+import { AskQuestionAction } from "../actions/QuestionAction";
 
 const AskQuestion = (props) => {
-    const { auth } = props;
+    const { auth, ask_question } = props;
     let history = useHistory();
     const { userId } = auth.user;
     const [question, setQuestion] = useState({ userId });
@@ -14,14 +15,7 @@ const AskQuestion = (props) => {
 
     const createPost = async (e) => {
         e.preventDefault();
-        console.log(question);
-        // try {
-        //     const res = await axios.post("/ask_question", question);
-        //     console.log(res.data);
-        //     history.push("/");
-        // } catch (error) {
-        //     console.log(error);
-        // }
+        ask_question(question, history);
     };
 
     function getByValue(arr, value) {
@@ -44,7 +38,7 @@ const AskQuestion = (props) => {
             }
         }
         fetchData();
-    });
+    }, []);
 
     return (
         <div className="card border-0 shadow">
@@ -118,10 +112,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ask_question: (history) => {
-            // dispatch();
-        }
-    }
+        ask_question: (question, history) => {
+            dispatch(AskQuestionAction(question, history));
+        },
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AskQuestion);

@@ -11,8 +11,10 @@ const questionState = {
 const questionReducer = (state = questionState, action) => {
     switch (action.type) {
         case QuestionActionType.ASK_QUESTION:
+            const addedQuestion = action.payload;
             const newQuestionState = {
-                ...state
+                ...state,
+                ...addedQuestion,
             }
             return newQuestionState;
 
