@@ -1,22 +1,32 @@
 import { QuestionActionType } from "../actions/QuestionAction";
 
 const questionState = {
-    userId: "",
-    productId: "",
-    subject: "",
-    text: "",
-    title: ""
+    currentQuestion: {
+        userId: "",
+        productId: "",
+        subject: "",
+        text: "",
+        title: ""
+    },
+    questions: []
 };
 
 const questionReducer = (state = questionState, action) => {
     switch (action.type) {
         case QuestionActionType.ASK_QUESTION:
             const addedQuestion = action.payload;
-            const newQuestionState = {
+            return {
                 ...state,
-                ...addedQuestion,
+                currentQuestion: addedQuestion,
             }
-            return newQuestionState;
+
+
+        case QuestionActionType.LOAD_ALL_QUESTIONS:
+            const allQuestions = action.payload;
+            return {
+                ...state,
+                questions: allQuestions,
+            }
 
         default:
             return state;

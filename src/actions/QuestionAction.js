@@ -2,7 +2,20 @@ import axios from "axios";
 
 const QuestionActionType = {
     ASK_QUESTION: "ASK_QUESTION",
+    LOAD_ALL_QUESTIONS: "LOAD_ALL_QUESTIONS"
+}
 
+const LoadAllQuestions = () => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get("/get_all_question", {
+                headers: { Authorization: "" }
+            });
+            dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
+        } catch (error) {
+            console("err : ", error);
+        }
+    }
 }
 
 const AskQuestionAction = (question, history) => {
@@ -20,4 +33,8 @@ const AskQuestionAction = (question, history) => {
     }
 }
 
-export { QuestionActionType, AskQuestionAction };
+export {
+    QuestionActionType,
+    AskQuestionAction,
+    LoadAllQuestions
+};

@@ -58,6 +58,7 @@ const AskQuestion = (props) => {
                         />
                     </div>
                     <div className="form-group dropdown">
+                        <p className="text-primary">Select a Product </p>
                         <Dropdown
                             className="form-control"
                             options={options}
