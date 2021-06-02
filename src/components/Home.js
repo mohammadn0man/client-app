@@ -8,10 +8,11 @@ function Home(props) {
     useEffect(() => {
         loadAllQuestions();
     }, []);
+    const obj = [];
 
     return (
         <div>
-            {questionState.isAllLoaded ? (
+            {questionState.isAllLoaded || questionState.questions.length > 0 ? (
                 <React.Fragment>
                     <table className="table shadow">
                         <tbody>

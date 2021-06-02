@@ -16,7 +16,7 @@ const Question = ({ question }) => {
                         {question.text.length > 300 ? question.text.substring(0, 299) + "  . . . . ." : question.text}
                     </p>
                     <div>
-                        <Link to={`/question/view/${question.questionId}`} className="btn btn-warning ml-auto">
+                        <Link to={`/question/view/${question.questionId}`} className="btn btn-warning text-white ml-auto">
                             View Full Post
                         </Link>
                         <p className="card-text ml-auto" style={{ float: "right" }}>
