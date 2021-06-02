@@ -12,6 +12,9 @@ const Question = ({ question }) => {
                     <h3 className="card-title">
                         {question.title}
                     </h3>
+                    <p className="card-title font-weight-bold go-right">
+                        {"Product : " + question.product.name}
+                    </p>
                     <p className="card-title">
                         {"Subject :  " + question.subject}
                     </p>

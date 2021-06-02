@@ -22,7 +22,9 @@ const LoadAllQuestions = () => {
 const LoadReply = (id) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/question_reply/${id}`);
+            const res = await axios.get(`/question_reply/${id}`, {
+                headers: { Authorization: "" }
+            });
             dispatch({ type: QuestionActionType.LOAD_REPLY, payload: res.data })
         } catch (error) {
             console("err : ", error);
