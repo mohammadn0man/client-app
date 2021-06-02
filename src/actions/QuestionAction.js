@@ -2,7 +2,8 @@ import axios from "axios";
 
 const QuestionActionType = {
     ASK_QUESTION: "ASK_QUESTION",
-    LOAD_ALL_QUESTIONS: "LOAD_ALL_QUESTIONS"
+    LOAD_ALL_QUESTIONS: "LOAD_ALL_QUESTIONS",
+    LOAD_REPLY: "LOAD_REPLY"
 }
 
 const LoadAllQuestions = () => {
@@ -12,6 +13,17 @@ const LoadAllQuestions = () => {
                 headers: { Authorization: "" }
             });
             dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
+        } catch (error) {
+            console("err : ", error);
+        }
+    }
+}
+
+const LoadReply = (id) => {
+    return async (dispatch) => {
+        try {
+            const res = await axios.get(`/question_reply/${id}`);
+            dispatch({ type: QuestionActionType.LOAD_REPLY, payload: res.data })
         } catch (error) {
             console("err : ", error);
         }
@@ -36,5 +48,6 @@ const AskQuestionAction = (question, history) => {
 export {
     QuestionActionType,
     AskQuestionAction,
+    LoadReply,
     LoadAllQuestions
 };

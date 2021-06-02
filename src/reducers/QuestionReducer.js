@@ -9,7 +9,9 @@ const questionState = {
         title: ""
     },
     isAllLoaded: false,
-    questions: []
+    questions: [],
+    isReplyLoaded: false,
+    replies: [],
 };
 
 const questionReducer = (state = questionState, action) => {
@@ -27,6 +29,14 @@ const questionReducer = (state = questionState, action) => {
                 ...state,
                 isAllLoaded: true,
                 questions,
+            }
+
+        case QuestionActionType.LOAD_REPLY:
+            const replies = action.payload;
+            return {
+                ...state,
+                isReplyLoaded: true,
+                replies,
             }
 
         default:

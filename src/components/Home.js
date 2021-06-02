@@ -16,7 +16,7 @@ function Home(props) {
                 <React.Fragment>
                     <table className="table shadow">
                         <tbody>
-                            {questionState.questions.map((question) => (
+                            {questionState.questions.slice(0).reverse().map((question) => (
                                 <Question question={question} key={question.questionId} />
                             ))}
                         </tbody>

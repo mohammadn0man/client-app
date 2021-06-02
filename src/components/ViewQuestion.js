@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { LoadAllQuestions } from '../actions/QuestionAction';
+import Reply from './Reply'
+import { LoadAllQuestions, LoadReply } from '../actions/QuestionAction';
 
 export const ViewQuestion = (props) => {
     const { id } = useParams();
+    const { loadReply } = props;
     const dispatch = useDispatch();
     function getData() {
         if (!props.state.questionState.isAllLoaded) {
             dispatch(LoadAllQuestions());
         }
-        console.log(props.state.questionState);
         let arr = props.state.questionState.questions.filter(
             (q) => q.questionId == id
         );
@@ -24,7 +25,7 @@ export const ViewQuestion = (props) => {
     const currentVal = getData();
 
     useEffect(() => {
-
+        loadReply(id);
     }, [])
 
     return (
@@ -47,19 +48,42 @@ export const ViewQuestion = (props) => {
                                     {currentVal.text}
                                 </p>
                             </div>
-                            <p className="card-text ml-auto" style={{ float: "left" }}>
+                            <p className="card-text ml-auto go-left" >
                                 {"Posted on : " + currentVal.creationDate}
                             </p>
-                            <p className="card-text ml-auto font-italic" style={{ float: "right" }}>
+                            <p className="card-text ml-auto font-italic go-right">
                                 {"From : " + currentVal.user.fullName}
                             </p>
                         </div>
                     </div>
                     <div className="card shadow">
                         <div className="card-body">
-                            <button className="btn btn-warning text-white">
-                                Load comment
-                    </button>
+                            <div className="card-title">
+                                <h4>Answers</h4>
+                            </div>
+                            <div className="card-text ml-auto">
+                                {props.state.questionState.isReplyLoaded ? (
+                                    props.state.questionState.replies.length < 1 ? (
+                                        <React.Fragment>
+                                            <p className="font-weight-light font-italic">No Replies yet.</p>
+                                        </React.Fragment>
+                                    ) : (
+                                        <React.Fragment>
+                                            <table className="table border">
+                                                <tbody>
+                                                    {props.state.questionState.replies.slice(0).reverse().map((reply) => (
+                                                        <Reply reply={reply} key={reply.replyId} />
+                                                    ))}
+                                                </tbody>
+                                            </table>
+                                        </React.Fragment>
+                                    )
+                                ) : (
+                                    <React.Fragment>
+                                        <p className="font-weight-light font-italic">Loading Replies....</p>
+                                    </React.Fragment>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </React.Fragment>
@@ -79,8 +103,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        register: () => {
-            // dispatch(RegisterAuthAction(userState, history, setErrorHandler));
+        loadReply: (id) => {
+            dispatch(LoadReply(id));
         },
     };
 };

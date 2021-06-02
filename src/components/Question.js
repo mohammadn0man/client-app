@@ -6,6 +6,9 @@ const Question = ({ question }) => {
         <tr>
             <td className="align-middle">
                 <div className="card-body">
+                    <p className="card-title font-italic go-right">
+                        {"Date : " + question.creationDate.substring(0, 10)}
+                    </p>
                     <h3 className="card-title">
                         {question.title}
                     </h3>
@@ -19,7 +22,7 @@ const Question = ({ question }) => {
                         <Link to={`/question/view/${question.questionId}`} className="btn btn-warning text-white ml-auto">
                             View Full Post
                         </Link>
-                        <p className="card-text ml-auto" style={{ float: "right" }}>
+                        <p className="card-text font-italic ml-auto go-right">
                             {"From : " + question.user.fullName}
                         </p>
                     </div>
