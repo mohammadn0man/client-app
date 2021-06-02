@@ -7,7 +7,7 @@ function Home(props) {
     const { loadAllQuestions, questionState } = props;
     useEffect(() => {
         loadAllQuestions();
-    }, []);
+    }, [props.questionState]);
     const obj = [];
 
     return (

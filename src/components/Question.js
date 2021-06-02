@@ -22,8 +22,8 @@ const Question = ({ question }) => {
                         {question.text.length > 300 ? question.text.substring(0, 299) + "  . . . . ." : question.text}
                     </p>
                     <div>
-                        <Link to={`/question/view/${question.questionId}`} className="btn btn-warning text-white ml-auto">
-                            View Full Post
+                        <Link to={`/question/view/${question.questionId}`} className="btn btn-white font-weight-light font-italic ml-auto">
+                            Read More...
                         </Link>
                         <p className="card-text font-italic ml-auto go-right">
                             {"From : " + question.user.fullName}

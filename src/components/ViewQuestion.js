@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Reply from './Reply'
 import { LoadAllQuestions, LoadReply } from '../actions/QuestionAction';
+import AddReply from './AddReply';
 
 export const ViewQuestion = (props) => {
     const { id } = useParams();
@@ -26,7 +27,7 @@ export const ViewQuestion = (props) => {
 
     useEffect(() => {
         loadReply(id);
-    }, [])
+    }, [props.state.questionState.replies])
 
     return (
         <div>
@@ -71,8 +72,11 @@ export const ViewQuestion = (props) => {
                                         <React.Fragment>
                                             <table className="table border">
                                                 <tbody>
-                                                    {props.state.questionState.replies.slice(0).reverse().map((reply) => (
-                                                        <Reply reply={reply} key={reply.replyId} />
+                                                    {props.state.questionState.replies.map((reply) => (
+                                                        <Reply
+                                                            reply={reply}
+                                                            key={reply.replyId}
+                                                        />
                                                     ))}
                                                 </tbody>
                                             </table>
@@ -84,6 +88,19 @@ export const ViewQuestion = (props) => {
                                     </React.Fragment>
                                 )}
                             </div>
+                            {props.state.authState.isLoggedIn ?
+                                (
+                                    <React.Fragment>
+                                        <AddReply
+                                            flag={props.state.questionState.replies.length < 1}
+                                            userId={props.state.authState.user.userId}
+                                            questionId={currentVal.questionId}
+                                        />
+                                    </React.Fragment>
+                                ) : (
+                                    <React.Fragment>
+                                    </React.Fragment>
+                                )}
                         </div>
                     </div>
                 </React.Fragment>

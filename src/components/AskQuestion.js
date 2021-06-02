@@ -13,7 +13,7 @@ const AskQuestion = (props) => {
     const [options, setOptions] = useState([]);
     const [product, setProduct] = useState([]);
 
-    const createPost = async (e) => {
+    const createPost = (e) => {
         e.preventDefault();
         ask_question(question, history);
     };
