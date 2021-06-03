@@ -1,5 +1,4 @@
 import axios from "axios";
-import { replace } from "react-router-redux";
 
 const QuestionActionType = {
     ASK_QUESTION: "ASK_QUESTION",
@@ -8,10 +7,10 @@ const QuestionActionType = {
     POST_REPLY: "POST_REPLY"
 }
 
-const LoadAllQuestions = () => {
+const LoadAllQuestions = (query) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get("/get_all_question", {
+            const res = await axios.get(`/get_all_question?query=${query}`, {
                 headers: { Authorization: "" }
             });
             dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
@@ -40,7 +39,6 @@ const PostReply = (reply) => {
             const res = await axios.post("/add_reply", reply);
             const { data } = res;
             console.log("res data :", data);
-            LoadReply(reply.questionId);
         } catch (error) {
             console.log("err : " + error);
         }

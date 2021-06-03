@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
-import logo from '../images/icon.png';
 import { LogOutAuthAction } from "../actions/AuthAction";
 
 const Header = (props) => {
@@ -10,7 +9,6 @@ const Header = (props) => {
 
   return (
     <nav className="navbar shadow fixed-top navbar-expand-sm navbar-dark bg-primary">
-      <img src={logo} className="logo" alt="Logo" />
       <div className="container">
         <Link to="/" className="text-white navbar-brand">
           QA Forum

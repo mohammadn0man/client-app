@@ -11,9 +11,9 @@ const AddReply = ({ flag, userId, questionId }) => {
 
     const createReply = (e) => {
         e.preventDefault();
-        console.log(reply);
         dispatch(PostReply(reply));
         e.target.reset();
+        window.location.reload(false);
     }
 
     return (
@@ -44,4 +44,4 @@ const AddReply = ({ flag, userId, questionId }) => {
     )
 }
 
-export default AddReply
+export default AddReply;

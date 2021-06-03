@@ -11,7 +11,7 @@ export const ViewQuestion = (props) => {
     const dispatch = useDispatch();
     function getData() {
         if (!props.state.questionState.isAllLoaded) {
-            dispatch(LoadAllQuestions());
+            dispatch(LoadAllQuestions(''));
         }
         let arr = props.state.questionState.questions.filter(
             (q) => q.questionId == id
@@ -27,7 +27,7 @@ export const ViewQuestion = (props) => {
 
     useEffect(() => {
         loadReply(id);
-    }, [props.state.questionState.replies])
+    }, [])
 
     return (
         <div>

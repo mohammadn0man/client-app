@@ -1,17 +1,27 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { LoadAllQuestions } from '../actions/QuestionAction';
 import Question from './Question';
 
 function Home(props) {
     const { loadAllQuestions, questionState } = props;
+    const [searchVal, setSearchVal] = useState('');
     useEffect(() => {
-        loadAllQuestions();
-    }, [props.questionState]);
-    const obj = [];
+        loadAllQuestions(searchVal);
+    }, [searchVal]);
 
     return (
         <div>
+            <div>
+                <input
+                    className="form-control form-control-lg mb-4"
+                    value={searchVal}
+                    onChange={e => {
+                        setSearchVal(e.target.value);
+                    }}
+                    placeholder="Type something to search"
+                />
+            </div>
             {questionState.isAllLoaded || questionState.questions.length > 0 ? (
                 <React.Fragment>
                     <table className="table shadow">
@@ -39,8 +49,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadAllQuestions: () => {
-            dispatch(LoadAllQuestions());
+        loadAllQuestions: (val) => {
+            dispatch(LoadAllQuestions(val));
         },
     };
 };
