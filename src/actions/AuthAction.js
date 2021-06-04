@@ -14,11 +14,16 @@ const RegisterAuthAction = (userState, history, setErrorHandler) => {
     try {
       const res = await axios.post("/signup", userState);
       const { data } = res;
-      console.log(data);
-      dispatch({ type: AuthActionType.REGISTER_SUCCESS, payload: data });
-      history.push("/");
+      if (data === undefined) { // any non 200 response
+        setErrorHandler({
+          hasError: true,
+          message: res.response.data,
+        });
+      } else {
+        dispatch({ type: AuthActionType.REGISTER_SUCCESS, payload: data });
+        history.push("/");
+      }
     } catch (error) {
-      console.log(error);
       if (error.response) {
         dispatch({
           type: AuthActionType.REGISTER_FAIL,
@@ -41,8 +46,15 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
     try {
       const res = await axios.post("/authenticate", loginState);
       const { data } = res;
-      dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
-      history.push("/");
+      if (data === undefined) { // any non 200 response
+        setErrorHandler({
+          hasError: true,
+          message: res.response.data,
+        });
+      } else {
+        dispatch({ type: AuthActionType.LOGIN_SUCCESS, payload: data });
+        history.push("/");
+      }
     } catch (error) {
       if (error.response) {
         dispatch({
