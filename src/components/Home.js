@@ -8,7 +8,9 @@ const SortTypes = {
     CREATION_DATE: "Creation Date",
     CREATION_DATE_DESC: "Most Recent",
     USER_NAME: "User Name",
-    PRODUCT_NAME: "Product Name"
+    PRODUCT_NAME: "Product Name",
+    SUBJECT: "Subject",
+    TITLE: "Title",
 }
 
 function Home(props) {
@@ -31,6 +33,12 @@ function Home(props) {
             case SortTypes.PRODUCT_NAME:
                 setSort("product.name");
                 break;
+            case SortTypes.TITLE:
+                setSort("title");
+                break;
+            case SortTypes.SUBJECT:
+                setSort("subject");
+                break;
             default:
                 setSort("creationDate");
                 break;
@@ -45,7 +53,7 @@ function Home(props) {
         <div>
             <div className="container">
                 <div className="row justify-content-md-center">
-                    <div className="col col-lg-2">
+                    <div className="col-xs-12 col-sm-12 col-md-8">
                         <div className="">
                             <input
                                 className="form-control mb-4"
@@ -57,11 +65,11 @@ function Home(props) {
                             />
                         </div>
                     </div>
-                    <div className="col-md-auto mt-2">
-                        Sort By :
+                    <div className="col-xs-4 col-sm-4 col-md-1 mt-2">
+                        <p>Sort By :</p>
                     </div>
-                    <div className="col col-lg-2">
-                        <div className=" form-control dropdown mb-4 ">
+                    <div className="col-xs-8 col-sm-8 col-md-3">
+                        <div className="form-control dropdown mb-4 ">
                             <Dropdown
                                 className=""
                                 options={options}
