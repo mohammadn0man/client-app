@@ -7,10 +7,10 @@ const QuestionActionType = {
     POST_REPLY: "POST_REPLY"
 }
 
-const LoadAllQuestions = (query) => {
+const LoadAllQuestions = (query, sort) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/get_all_question?query=${query}`, {
+            const res = await axios.get(`/get_all_question?query=${query}&sort=${sort}`, {
                 headers: { Authorization: "" }
             });
             dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
