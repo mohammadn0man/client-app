@@ -10,7 +10,7 @@ const QuestionActionType = {
 const LoadAllQuestions = (query, sort) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/get_all_question?query=${query}&sort=${sort}`, {
+            const res = await axios.get(`/question/get?query=${query}&sort=${sort}`, {
                 headers: { Authorization: "" }
             });
             dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
@@ -23,7 +23,7 @@ const LoadAllQuestions = (query, sort) => {
 const LoadReply = (id) => {
     return async (dispatch) => {
         try {
-            const res = await axios.get(`/question_reply/${id}`, {
+            const res = await axios.get(`/reply/question/${id}`, {
                 headers: { Authorization: "" }
             });
             dispatch({ type: QuestionActionType.LOAD_REPLY, payload: res.data })
@@ -36,7 +36,7 @@ const LoadReply = (id) => {
 const PostReply = (reply) => {
     return async () => {
         try {
-            const res = await axios.post("/add_reply", reply);
+            const res = await axios.post("/reply/add", reply);
             const { data } = res;
             console.log("res data :", data);
         } catch (error) {
@@ -48,7 +48,7 @@ const PostReply = (reply) => {
 const AskQuestionAction = (question, history) => {
     return async (dispatch) => {
         try {
-            const res = await axios.post("/ask_question", question);
+            const res = await axios.post("/question/ask", question);
             const { data } = res;
             dispatch({ type: QuestionActionType.ASK_QUESTION, payload: question });
             history.push("/");

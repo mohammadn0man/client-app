@@ -26,7 +26,7 @@ const AskQuestion = (props) => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const res = await axios.get("/all_product");
+                const res = await axios.get("/product/get");
                 const val = res.data;
                 setProduct(val);
                 let result = val.map(a => a.name);

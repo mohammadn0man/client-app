@@ -12,7 +12,7 @@ const AuthActionType = {
 const RegisterAuthAction = (userState, history, setErrorHandler) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post("/signup", userState);
+      const res = await axios.post("/user/signup", userState);
       const { data } = res;
       if (data === undefined) { // any non 200 response
         setErrorHandler({
@@ -44,7 +44,7 @@ const RegisterAuthAction = (userState, history, setErrorHandler) => {
 const LoginAuthAction = (loginState, history, setErrorHandler) => {
   return async (dispatch) => {
     try {
-      const res = await axios.post("/authenticate", loginState);
+      const res = await axios.post("/user/authenticate", loginState);
       const { data } = res;
       if (data === undefined) { // any non 200 response
         setErrorHandler({
@@ -70,7 +70,7 @@ const LoginAuthAction = (loginState, history, setErrorHandler) => {
 const LogOutAuthAction = (history) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get("/user_logout");
+      const res = await axios.get("/user/logout");
       const { data } = res;
       dispatch({
         type: AuthActionType.LOGOUT_SUCCESS,
