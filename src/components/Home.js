@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { LoadAllQuestions } from '../actions/QuestionAction';
 import Question from './Question';
 import Dropdown from 'react-dropdown';
+import Footer from './Footer';
 
 const SortTypes = {
     CREATION_DATE: "Creation Date",
@@ -99,6 +100,7 @@ function Home(props) {
                     <h4>Nothing to show here...</h4>
                 </React.Fragment>
             )}
+            <Footer />
         </div>
     )
 }

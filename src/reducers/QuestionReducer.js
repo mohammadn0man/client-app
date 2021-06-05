@@ -38,7 +38,6 @@ const questionReducer = (state = questionState, action) => {
                 isReplyLoaded: true,
                 replies,
             }
-
         default:
             return state;
     }
