@@ -49,7 +49,7 @@ const AskQuestionAction = (question, history) => {
     return async (dispatch) => {
         try {
             const res = await axios.post("/question/ask", question);
-            const { data } = res;
+            console.log(res.data);
             dispatch({ type: QuestionActionType.ASK_QUESTION, payload: question });
             history.push("/");
         } catch (error) {

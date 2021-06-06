@@ -61,6 +61,15 @@ export const ViewQuestion = (props) => {
                         <div className="card-body">
                             <div className="card-title">
                                 <h4>Answers</h4>
+                                {currentVal.acceptedAnswerId != 0 ? (
+                                    <React.Fragment>
+                                        <div className="go-right">
+                                            {"Marked solve on : " + currentVal.closedDate}
+                                        </div>
+                                    </React.Fragment>
+                                ) : (
+                                    <React.Fragment></React.Fragment>
+                                )}
                             </div>
                             <div className="card-text ml-auto">
                                 {props.state.questionState.isReplyLoaded ? (
@@ -75,6 +84,8 @@ export const ViewQuestion = (props) => {
                                                     {props.state.questionState.replies.map((reply) => (
                                                         <Reply
                                                             reply={reply}
+                                                            question={currentVal}
+                                                            allowMarkingFlag={props.state.authState.user.userId == currentVal.user.userId && currentVal.acceptedAnswerId == 0}
                                                             key={reply.replyId}
                                                         />
                                                     ))}
