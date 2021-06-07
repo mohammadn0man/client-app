@@ -15,7 +15,7 @@ const LoadAllQuestions = (query, sort) => {
             });
             dispatch({ type: QuestionActionType.LOAD_ALL_QUESTIONS, payload: res.data })
         } catch (error) {
-            console("err : ", error);
+            console.log("err : ", error);
         }
     }
 }
@@ -28,7 +28,7 @@ const LoadReply = (id) => {
             });
             dispatch({ type: QuestionActionType.LOAD_REPLY, payload: res.data })
         } catch (error) {
-            console("err : ", error);
+            console.log("err : ", error);
         }
     }
 }
